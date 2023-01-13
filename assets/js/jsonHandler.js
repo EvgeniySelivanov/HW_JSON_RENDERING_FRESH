@@ -3,35 +3,36 @@
 const section=document.getElementById("cardsContainer");
 const selectedList=document.getElementById("selectedList");
 
-
-// console.log(selectedList);
 function jsonHandler(){
 fetch('./assets/json/data.json')
 .then((response)=>{return response.json();})
 .then(
-  (data)=>{data.forEach(
+  (data)=>{
+    const dataActors= data.filter((nextActor)=>nextActor.firstName!==''&&nextActor.lastName!=='');
+    dataActors.forEach(
     (actor) => {
     
       section.append( 
         createElement('li',{
           classNames:['cardWrapper'],
-          listeners: { 'click': handlerOther }
+          // listeners: { 'click': handlerOther ,'mouseover': showHandCursor}
           } ,
           createElement('article',{classNames:['cardContainer']},
             createElement('div', {classNames:['cardPhotoWrapper']},
-            //   createElement('div',
-            //    {classNames:['cardInitial'], 
-            //     styles:{'backgroundColor':stringToColour(actor.firstName)}
-            //   },
-            //  document.createTextNode(getInitial(actor.firstName) || "noname")
-            //   ),
+
+              createElement('div', {classNames:['cardInitial'], 
+                },
+                  document.createTextNode(getInitial(actor.firstName,actor.lastName) || "noname")
+                  ),
+
+
               createElement('img', {
-                classNames:['cardPhoto'],
-                listeners: { 'error': handlerImageError, 'load': handlerImageLoad },
-                attrs: { 'src': actor.profilePicture, 'alt': 'no image', 'hidden': true }
-              })
+                      classNames:['cardPhoto'],
+                      listeners: { 'error': handlerImageError, 'load': handlerImageLoad},
+                      attrs: { 'src': actor.profilePicture, 'alt': actor.firstName, 'hidden': true }
+                      })
             ),
-            createElement('h2', {classNames:['cardName']}, 
+              createElement('h2', {classNames:['cardName'],listeners: { 'click': handlerOther ,'mouseover': showHandCursor}}, 
             
             document.createTextNode(actor.firstName.concat(' ',actor.lastName) || document.createTextNode('noname') )
             ),
@@ -44,7 +45,7 @@ fetch('./assets/json/data.json')
 
 
 );})
-.catch((error)=>{section.append('ERROR!!!!');})
+.catch((error)=>{section.append('Error!');})
 .finally(()=>{console.log('finally');});
 }
 jsonHandler();

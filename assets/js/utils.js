@@ -1,7 +1,36 @@
 "use strict";
 
-const getInitial=(name)=>(name==='')?'':name.split(/\s+/).map(word=>word[0].toUpperCase()).join('.')+".";
+// const getInitial=(name)=>(name==='')?'':name.split(/\s+/).map(word=>word[0].toUpperCase()).join('.')+".";
   
+const getInitial= function(firstName,lastName){
+  const fullName=firstName.concat(' ',lastName);
+  
+  return fullName.split(/\s+/).map(word=>word[0].toUpperCase()).join('.')+".";
+}
+
+
+
+
+
+
+function createActorStr({target}){
+ return selectedList.append(createElement('p',{classNames:['actorString']},document.createTextNode(target.outerText)));
+
+}
+function showHandCursor({target}){
+  
+  target.style.cursor = 'copy';
+  target.removeEventListener('mouseover',showHandCursor);
+
+}
+
+function handlerOther({target}){
+console.log({target});
+createActorStr({target});
+target.removeEventListener('click',handlerOther);
+
+}
+
 
 const stringToColour = function(str) {
   let hash = 0;
@@ -16,29 +45,13 @@ const stringToColour = function(str) {
   return colour.length===7?colour:colour+'0';
 }
 
-
-
-
-function createActorStr({target}){
- return selectedList.append(createElement('p',{classNames:['actorString']},document.createTextNode(target.childNodes[0].childNodes[1].innerText)));
-
- 
-}
-
-function handlerOther({target}){
-console.log(typeof target);
-console.log({target});
-target.addEventListener('click',createActorStr({target})) ;
-target.removeEventListener('click',createActorStr);
-
-}
-
 function handlerImageError({target}){
   target.remove();
 }
 function handlerImageLoad({target}){
 target.hidden=false;
 }
+
 /**
  * 
  * @param {string} tag 
@@ -75,7 +88,7 @@ function createLinks(links){
 
 const res= links.map((link)=>{
 const socialIcon=socialMap.get(new URL(link).host);
-return createElement('a',{classNames:['icon',socialIcon],attrs:{'href':link}})}
+return createElement('a',{classNames:['icon',socialIcon],attrs:{'href':link, 'target':'_blanc'}})}
 );
 return res;
 };

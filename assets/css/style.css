@@ -2,6 +2,11 @@
   font-size: 16px;
   --photo-size: 320px;
 }
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 #shower{
 background: rgb(255,103,108);
 background: linear-gradient(0deg, rgba(255,103,108,1) 0%, rgba(255,103,108,1) 50%, rgba(255,255,255,1) 51%);
@@ -20,91 +25,97 @@ p{
   color:rgba(255,103,108,1);
   text-align: center;
 }
+
 .cardsContainer{
   display: flex;
   flex-flow: row wrap;
   justify-content: space-around;
+  
 }
+
+
 .cardWrapper{
-  width: 300px;
-  height: 300px;
   margin: 1rem;
   padding: 2px;
   border: 2px solid #ccc;
   border-radius: 10px;
-  background-color: rgb(255, 255, 255);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  background-color: aliceblue;
 }
+
+
 .cardContainer{
-  padding-top: 10px;
   text-align: center;
-  width: 200px;
-  height: 200px;
 }
+
+
 .cardPhotoWrapper{
-  width: 150px;
-  height: 190px;
-  width: 100%;
-  /* position: relative; */
+  width: var(--photo-size);
+  height: var(--photo-size);
+  position: relative;
 }
+
+
 .cardPhotoWrapper>*{
   width: 100%;
   height: 100%; 
-  /* position: absolute; */
-  left: 75px;
+  position: absolute;
+  left: 0;
   right: 0;
-  top: 20px;
+  top: 0;
   bottom: 0;
 }
+
+
 .cardInitial{
   text-align: center;
   padding-top: 60px;
   width: 100%;
   height: 100%;
-  /* background-color: pink; */
-  color: #ccc;
-  font-size: 8rem;
+  /* background-color: aliceblue; */
+  color: rgb(129, 9, 241);
+  font-size: 7rem;
 }
 .cardPhoto{
-  width: 150px;
-  height: 150px;
+  width: 70%;
+  height: 70%;
   border-radius: 50% 50%;
   border: 2px solid red ;
   object-fit: cover;
   object-position: top;
+  left: 45px;
+  top:10px
 }
 
 .cardName{
-  /* padding-top: 1rem;
-  padding-bottom: 0.5rem;*/
-  /* padding-left: 6rem;  */
+ 
   margin: auto;
-  font-size: large;
+  font-size: 20px;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-weight: 600;
   color: black;
  
+}
+.cardName::after{
+  content: '';
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  background-image: url(../images/account-multiple-plus.svg);
 }
 .actorString{
   color: black;
 }
-.iconBox{
 
-}
 .icon{
   
   color: pink;
   display: inline-block;
   width: 50px;
   height: 50px;
-  /* margin:0.5rem */
+
   
 }
-.fb-icon,
-.tw-icon,
-.inst-icon{
-  
-}
+
 .fb-icon{
   background-image: url(../images/facebook.svg);
 }
@@ -114,4 +125,10 @@ p{
 }
 .inst-icon{
   background-image: url(../images/instagram.svg);
+}
+.selectedList{
+  text-align: center;
+  font-size: 50px;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-weight: 900;
 }
