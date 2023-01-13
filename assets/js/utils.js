@@ -1,22 +1,16 @@
-"use strict";
+"use strict";  
+  const getInitial= function(firstName,lastName){
 
-// const getInitial=(name)=>(name==='')?'':name.split(/\s+/).map(word=>word[0].toUpperCase()).join('.')+".";
-  
-const getInitial= function(firstName,lastName){
-  const fullName=firstName.concat(' ',lastName);
-  
-  return fullName.split(/\s+/).map(word=>word[0].toUpperCase()).join('.')+".";
+  return firstName.concat(' ',lastName).split(/\s+/).map(word=>word[0].toUpperCase()).join('.')+".";
 }
-
-
-
-
-
 
 function createActorStr({target}){
- return selectedList.append(createElement('p',{classNames:['actorString']},document.createTextNode(target.outerText)));
+ 
+  return selectedList.append(createElement('p',{classNames:['actorString']},document.createTextNode(target.outerText)));
 
 }
+
+
 function showHandCursor({target}){
   
   target.style.cursor = 'copy';
@@ -25,6 +19,7 @@ function showHandCursor({target}){
 }
 
 function handlerOther({target}){
+
 console.log({target});
 createActorStr({target});
 target.removeEventListener('click',handlerOther);
@@ -59,7 +54,7 @@ target.hidden=false;
  * @param  {...Node|string} children 
  * @returns {Node}
  */
-function createElement(tag='div', { classNames, listeners, attrs , styles}={}, ...children) {
+function createElement(tag = 'div', { classNames, listeners, attrs , styles}={}, ...children) {
   const elem = document.createElement(tag);
   if (classNames) {
     elem.classList.add(...classNames);
@@ -86,9 +81,9 @@ function createElement(tag='div', { classNames, listeners, attrs , styles}={}, .
 
 function createLinks(links){
 
-const res= links.map((link)=>{
-const socialIcon=socialMap.get(new URL(link).host);
+return links.map((link) => {
+const socialIcon = socialMap.get(new URL(link).host);
 return createElement('a',{classNames:['icon',socialIcon],attrs:{'href':link, 'target':'_blanc'}})}
 );
-return res;
+
 };

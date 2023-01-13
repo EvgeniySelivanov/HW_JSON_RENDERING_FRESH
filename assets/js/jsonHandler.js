@@ -15,7 +15,6 @@ fetch('./assets/json/data.json')
       section.append( 
         createElement('li',{
           classNames:['cardWrapper'],
-          // listeners: { 'click': handlerOther ,'mouseover': showHandCursor}
           } ,
           createElement('article',{classNames:['cardContainer']},
             createElement('div', {classNames:['cardPhotoWrapper']},
@@ -50,4 +49,4 @@ fetch('./assets/json/data.json')
 }
 jsonHandler();
 
-//   document.createTextNode(actor.birthdate || 'not info')
+
